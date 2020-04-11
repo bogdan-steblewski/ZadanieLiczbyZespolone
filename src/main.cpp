@@ -1,6 +1,6 @@
 #include <iostream>
 #include "BazaTestu.hh"
-
+#include "stat.hh"
 using namespace std;
 
 
@@ -32,15 +32,44 @@ int main(int argc, char **argv)
   cout << endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
-  
+  LZespolona odp;
+  statystyka stat={0,0};
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
+    cout<<"wyrazenie zespolone "<<WyrZ_PytanieTestowe<<endl;
+    for(int i=0; i<3; i++)
+    {
+      cout<<"Twoja odpowiedz to : "<<endl;
+    cin>>odp;
+    if(cin.bad())
+    {
+      cout<<"blad w zapisie "<<endl;
+    }
+    else
+    {
+      break;
+    }
+    cin.clear();
+    cin.ignore(1024,'\n');
+    }
+    if(odp==Oblicz(WyrZ_PytanieTestowe))
+    {
+      cout<<"poprawne"<<endl;
+      stat.poprawne++;
+      stat.wszystkie++;
+    }
+    else
+    {
+      cout<<"zle poprawne to : "<<Oblicz(WyrZ_PytanieTestowe)<<endl;
+        stat.wszystkie++;
+    }
+    
   }
 
   
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
+
+  Wyswietl(stat);
 
 }

@@ -7,9 +7,9 @@ __start__: ${TRGDIR}/test_arytm_zesp
 	${TRGDIR}/test_arytm_zesp  latwy
 
 ${TRGDIR}/test_arytm_zesp: ${OBJ} ${OBJ}/main.o ${OBJ}/LZespolona.o\
-                     ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o ${OBJ}/BazaTestu.o
+                     ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o ${OBJ}/BazaTestu.o ${OBJ}/stat.o
 	g++ -o ${TRGDIR}/test_arytm_zesp ${OBJ}/main.o ${OBJ}/LZespolona.o\
-                     ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o
+                     ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o ${OBJ}/stat.o
 
 ${OBJ}:
 	mkdir ${OBJ}
@@ -27,11 +27,10 @@ ${OBJ}/BazaTestu.o: src/BazaTestu.cpp inc/BazaTestu.hh inc/WyrazenieZesp.hh\
 ${OBJ}/WyrazenieZesp.o: src/WyrazenieZesp.cpp inc/WyrazenieZesp.hh\
                        inc/LZespolona.hh
 	g++ -c ${FLAGS} -o ${OBJ}/WyrazenieZesp.o src/WyrazenieZesp.cpp
-
-${OBJ}/BazaTestu.o: src/BazaTestu.cpp inc/BazaTestu.hh inc/WyrazenieZesp.hh\
-                       inc/LZespolona.hh
-	g++ -c ${FLAGS} -o ${OBJ}/BazaTestu.o src/BazaTestu.cpp
-
+	
+#dodano
+${OBJ}/stat.o: src/stat.cpp inc/stat.hh
+	g++ -c ${FLAGS} -o ${OBJ}/stat.o src/stat.cpp
 
 
 
